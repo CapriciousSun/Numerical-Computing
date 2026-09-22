@@ -1,0 +1,112 @@
+%
+%  Example solution set - shows how to include codes, results and figures
+%
+\documentclass[11pt]{article}
+% 
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\usepackage{calc}
+\usepackage[margin=1.in]{geometry}
+
+\usepackage[usenames]{color}
+
+\usepackage{listings}
+\lstset{
+basicstyle=\footnotesize\ttfamily,
+columns=flexible,
+breaklines=true,
+commentstyle=\color{red},
+keywordstyle=\color{black}\bfseries,
+keepspaces=true
+}
+
+\usepackage{fancyvrb}% fancy Verbatim
+
+\newcommand{\Dp}{D_+}
+\newcommand{\Dm}{D_-}
+\newcommand{\Dz}{D_0}
+\newcommand{\dx}{\Delta x}
+\newcommand{\dy}{\Delta y}
+\newcommand{\dt}{\Delta t}
+\newcommand{\Nx}{N_x} 
+
+\begin{document}
+
+\begin{flushleft}
+W.D. Henshaw \hfill \textbf{\large Math 4800 Sample Solution Set} \hfill ~~~~~~~~~~~~~~~~~
+\end{flushleft}
+
+\medskip
+This file shows how to include code listings and output from Matlab into a LaTeX file.
+It also shows how to include figures made in Matlab. 
+
+% -------------------------
+\bigskip
+\noindent{\em Solution:}
+
+
+
+% ----------------------------------------------------------------------------------------------
+\bigskip
+\noindent 1(a) The method-of-lines approximation is
+\begin{align*}g
+ &  \frac{d V_i(t)}{dt} = \kappa \Dp\Dm V_i(t) , \qquad i=1,2,3,\ldots,\Nx-1, \\
+ &   V_0(t) = g_a(t), \qquad V_{\Nx}(t) = g_b(t), \\
+ &   V_i(0) = \sin(k\pi x_i), \quad \qquad i=0,1,2,3,\ldots,\Nx
+\end{align*}
+
+\medskip
+\noindent 1(b) Forward-Euler in time: 
+\begin{align*}
+ &  \frac{U_i^{n+1} - U_i^n}{\dt} = \kappa \Dp\Dm U_i^n , \qquad i=1,2,3,\ldots,\Nx-1, \\
+ &   U_0^n = g_a(t^n), \qquad U_{\Nx}^n = g_b(t^n), \\
+ &   U_i^0 = \sin(k\pi x_i), \quad \qquad i=0,1,2,3,\ldots,\Nx.
+\end{align*}
+
+\bigskip
+\noindent 1(c) The exact solution is 
+\begin{align*}
+   u(x,t) = e^{ -  \kappa(k\pi)^2  \, t }\, \sin(k\pi x).
+\end{align*}
+
+\medskip
+\noindent 1(d)  The matlab code is given below. Here are results for FE-CD2.
+
+\medskip\noindent
+Here is one way to include code output using the lstlisting environment: 
+\begin{lstlisting}[frame=single,caption={Results from 1(d).},label=lst:FE-CD2]
+>> sampleCode
+ t=0.50 CPU=1.0e-02 Nx= 20 Nt=   44 dt=1.14e-02 max-Err=1.6e-03
+ t=0.50 CPU=0.0e+00 Nx= 40 Nt=  178 dt=2.81e-03 max-Err=4.1e-04 ratio=4.01 rate=2.00
+ t=0.50 CPU=3.0e-02 Nx= 80 Nt=  711 dt=7.03e-04 max-Err=1.0e-04 ratio=3.98 rate=1.99
+ t=0.50 CPU=6.0e-02 Nx=160 Nt= 2844 dt=1.76e-04 max-Err=2.6e-05 ratio=4.00 rate=2.00
+\end{lstlisting}
+
+\medskip\noindent
+Here is another way to include output using the Verbatim environment: 
+\begin{Verbatim}[fontsize=\small]
+>> sampleCode
+ t=0.50 CPU=1.0e-02 Nx= 20 Nt=   44 dt=1.14e-02 max-Err=1.6e-03
+ t=0.50 CPU=0.0e+00 Nx= 40 Nt=  178 dt=2.81e-03 max-Err=4.1e-04 ratio=4.01 rate=2.00
+ t=0.50 CPU=3.0e-02 Nx= 80 Nt=  711 dt=7.03e-04 max-Err=1.0e-04 ratio=3.98 rate=1.99
+ t=0.50 CPU=6.0e-02 Nx=160 Nt= 2844 dt=1.76e-04 max-Err=2.6e-05 ratio=4.00 rate=2.00
+\end{Verbatim}
+
+\lstinputlisting[language=Matlab, numbers=left, stepnumber=1, firstline=1,caption={heat.m, Matlab code for sample solution},label=code:heatEquation,frame=single]{sampleCode.m}
+
+\begin{figure}[hbt]
+\begin{center}
+  \includegraphics[width=7.5cm]{heatEquation1d_FE} \quad
+  \includegraphics[width=7.5cm]{heatEquation1d_FE_err}
+  \caption{Results from problem 1. Left: computed and exact solutions at $t=1$. Right: errors at $t=1$.} \label{fig:heat}
+\end{center}
+\end{figure}
+
+
+\end{document}
+% =====================================================
+% =====================================================
+% =====================================================
+

@@ -1,0 +1,194 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{TangGreen}{HTML}{377459}
+\hyphenpenalty=10000
+
+\title{Problem Set 3}
+\author{Jeremy Chen}
+\date{September 20, 2026}
+\begin{document}
+	\maketitle
+
+\noindent\textbf{1.} (10 pts) Backward and forward error. 
+
+\begin{enumerate}[\textbf{(\alph{enumi})}]
+
+\item  Find the forward error (solution error), backward error (residual) and error-magnification factor, EMF, for the following functions, where the exact root is $x_{e} = 3/5$ and the approximate root is $x_{a} = .61$. When computing the EMF, assume that the relative errors are the same as the absolute errors.
+
+\begin{enumerate}[1. ]
+
+\item $f(x) = 5x - 3$
+
+\item $f(x) = (5x - 3)^{2}$
+
+\item $f(x) = (5x - 3)^{3}$
+
+\item $f(x) = (5x - 3)^{7}$
+
+\item $f(x) = (5x - 3)^{1/3}$
+
+\end{enumerate}
+
+\item Use your {\tt bisect} Matlab function and the Matlab function {\tt fzero} to compute approximations to the zero of the function
+
+\ \ {\tt f = @(x) x.\textasciicircum5-(10/3)*x.\textasciicircum4+(40/9)*x.\textasciicircum3-(80/27)*x.\textasciicircum+(80/81)*x-32/243;}
+
+(this is an expansion of $(x - \frac{2}{3})^{5}$) as accurately as you can. To show all digits you could use
+
+\ \ {\tt fprintf('Solution from bisect: xc=\%22.16e, f(xc)=\%9.2e\textbackslash n’,xc,f(xc));}
+
+What are the forward and backward errors in each case? Is this a \textit{well-conditioned} or \textit{ill-conditioned} problem (explain, briefly)?
+
+\end{enumerate}
+
+\noindent\textbf{2.} (10 pts) Newton's method. 
+
+\begin{enumerate}[\textbf{(\alph{enumi})}]
+
+\item Show analytically hat Newton’s method converges in one step for any initial guess when finding the root of a linear function $f(x) = a + bx$ when $b \neq 0$. 
+
+\item Derive the formula for using Newton’s method to find the cube root of a real number a (by finding a root $x^{3} = a$). Simplify the resulting expression. Using a calculator, determine the first 4 Newton iterates, $x_{k}$, $k = 1, 2, 3, 4$, when computing $8^{1/3}$ from a starting guess of $x_{0} = 1$. 
+
+\item Derive the formula for using Newton’s method to find the p’th root of a real number a for some real number $p$. Simplify the resulting expression.
+
+\end{enumerate}
+
+\noindent\textbf{3.} Bonus Question (10 pts) Estimating the order of convergence.
+
+Consider solving the equation $f(x) = 0$. Let $x_{n}$ denote a guess to the solution, $x_{e}$ the exact solution and $e_{n} = x_{n} - x_{e}$ the error at step $n$. 
+
+\begin{enumerate}[\textbf{(\alph{enumi})}]
+
+\item Use Taylor's theorem to show that 
+$$c_{n} \approx \frac{f(x_{n})}{f'(x_{e})}$$
+assuming $c_{n}$ is small enough and $f'(x) \neq 0$. Thus the residual (backward error) $f(x_{n})$ is proportional to the solution error (forward error) $e_{n}$. 
+
+\item The order of convergence, $p$, of a scheme was defined to be the value $p$ such that 
+$$\frac{e_{n + 1}}{(e_{n})^{p}} \approx M = \text{constant},\ \ \ \text{as} \rightarrow \infty,$$
+where $M$ is a finite and non-zero constant. Use the results of (a) to show that
+$$\frac{f(x_{n} + 1)}{f(x_{n})^{p}} \approx N = \text{constant}$$
+for some other constant $N$ (you may assume that $f'(x_{e})$ is a non-zero constant). 
+
+\item Use the results of (b) to drive the following approximate formula for $p$,
+$$p \approx \frac{\log(R_{n})}{\log(R_{n})},$$
+where $R_{n}$ is the ratio of the absolute value of the residuals from step n and step $n - 1$,
+$$R_{n} = \frac{|f(x_{n})|}{|f(x_{n - 1})|}$$
+
+\end{enumerate}
+
+\noindent\textbf{4.} (20 pts)
+
+\begin{enumerate}[\textbf{(\alph{enumi})}]
+
+\item Implement Newton's method in a Matlab function to find a solution to a scalar problem
+$$f(x) = 0$$
+{\tt \% \\
+\% Find an approximate solution to a scalar equation\\
+\% \ \ \ \ \ \ \ f(x) = 0\\
+\% by Newton's method\\
+\%\\
+\% f (input) : function f(x)\\
+\% fx (input) : function that defines f'(x)\\
+\% x0 (input) : initial guess\\
+\& tol (input) : convergence tolerance\\
+\% xc (output) : approximate solution\\
+\% maxIterations (input) : maximum number of iterations\\
+function [xc] = solveEquationByNewton( f, fx, x0, tol, maxIterations )}
+
+\begin{itemize}
+
+\item Iterate until $|f({\tt xc})| < $ {\tt tol}.
+
+\item Keep track of the iteration number, $k$, and take at most {\tt maxIterations} iterations. Print an error message if the maximum number of iterations is exceeded.
+
+\item Avoid evaluating the function $f(x)$ more times than necessary.
+
+\item Add a statement to the code that outputs the current values for $k, x_{k}, f(x_{k}), ration = f(x_{k})/f(x_{k - 1})$ and $p$ (estimated order of convergence from equation (1)) at iteration $k = 1, 2, \dots$. You could use the following statements:
+
+\begin{verbatim}
+if ( k == 1) \% do not print p first time
+  fprintf(’Newton: it=%2d: x=%13.6e f(x)=%9.2e ratio=%9.2e\n’,k,xc,fc,ratio);
+else
+  fprintf(’Newton: it=%2d: x=%13.6e f(x)=%9.2e ratio=%9.2e p=%4.2f\n’,k,xc,fc,ratio,p);
+end;
+\end{verbatim}
+
+\end{itemize}
+
+\item Test your Newton solver by finding $\sqrt{17}$ by looking for a root to $f(x) = x^{2} - 17 = 0$ using an initial guess $x_{0} = 1$. (Use {\tt tol} = $10^{-12}$ and {\tt maxIterations} = 20). Hint: Make sure that you see quadratic convergence (approximately). 
+
+\item Use your Newton solver to find 3 real roots of the Bessel function $J_{2}(x)$ on the interval [-2, 10],
+$$f(x) = J_{2}(x).$$
+Note that the Bessel function $J_{n}(x)$ can be evaluated in Matlab with {\tt besselj(n, x)}. Also note that the derivative of a Bessel function satisfies $J_{n}'(x) = \frac{1}{2} (J_{n - 1}(x) - J_{n + 1}(x))$. 
+
+\begin{itemize}
+
+\item First plot the function $f(x)$ on [-2, 10] to determine a rough initial guess that you can be used for each root. Include the plot with your answer. (Note: for the root at $x = 0$ do \underline{not} choose zero as the initial guess so that you can see how well your Newton solver works for this case.)
+
+\item For each root determine whether the algorithm convergeces quadratically (approximately) or at some other rate. Use {\tt tol} = $10^{-12}$ and {\tt maxIterations} = 20. Hint: you may get better convergence results if you do not choose the initial guess too close to the actual root.
+
+\end{itemize}
+
+\end{enumerate}
+
+\noindent\textbf{5.} (20 pts) 
+
+\begin{enumerate}[(\textbf{\alph{enumi}})]
+
+\item Implement the secant method in a Matlab function to find a solution to a scalar problem
+$$f(x) = 0$$
+
+\begin{verbatim}
+	%
+	% Find an approximate solution to the scalar equation
+	%        f(x) = 0
+	% by the Secant Method.
+	%
+	% f (input) : function f(x)
+	% x0, x1 (input) : initial guesses
+	% tol (input) : convergence tolerance
+	% xc (output) : approximate solution
+	% maxIterations (input) : maximum number of iterations
+	
+	function [xc] = solveEquationBySecantMethod( f, x0, x1, tol, maxIterations )
+\end{verbatim}
+
+\begin{itemize}
+
+\item Iterate until $|f({\tt xc})| <$ {\tt tol}.
+
+\item Note that the secant method needs two starting values $x_{0}$ and $x_{1}$. 
+
+\item Keep track of the iteration number, $k$, and take at most {\tt maxIterations} iterations. Print an error message if the maximum number of iterations is exceeded.
+
+\item Avoid evaluating the function $f(x)$ more times than necessary.
+
+\item Add a statement ot the code that outputs the current vlaues for $k, x_{k}, f(x_{k}), ratio = f(x_{k})/f(x_{k - 1})$ and $p$ (estimated order of convergence from equation (1)) at iteration $k = 1, 2, \dots$. You could use the following statement:
+\begin{verbatim}
+fprintf(’Secant: it=%2d: x=%13.6e f(x)=%9.2e ratio=%9.2e p=%4.2f\n’,k,xc,f1,ratio,p);
+\end{verbatim}
+
+\end{itemize}
+
+\item Test your secant-method solver y finding $\sqrt{3}$ by looking for a root to $f(x) = x^{2} - 3 = 0$ using an initial guess $x_{0} = 1$ and $x_{1} = 2.0$. (Use {\tt tol} = $10^{-12}$ and {\tt maxIterations} = 20). Confirm that the secant method converges super-linearly (approximately).
+
+\item Use your secant-method solver to find the same roots as for problem 4(c).
+
+\begin{itemize}
+
+\item Choose initial guesses, $x_{0}$ and $x_{1}$, for each root (use the same values for $x_{0}$ as in problem 4.).
+
+\item For each root determine whether the algorithm converges super-linearly or linearly (approximately). Use {\tt tol} = $10^{-12}$ and {\tt maxiterations} = 20. 
+
+\end{itemize}
+
+\end{enumerate}
+
+\end{document}
