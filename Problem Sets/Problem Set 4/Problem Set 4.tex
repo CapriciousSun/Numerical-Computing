@@ -1,0 +1,92 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{TangGreen}{HTML}{377459}
+\hyphenpenalty=10000
+
+\title{Problem Set 4}
+\author{Jeremy Chen}
+\date{September 28, 2026}
+\begin{document}
+	\maketitle
+
+\noindent\textbf{1. }(10 pts) (Hand computations.)
+
+\begin{enumerate}[\textbf{(\alph{enumi})}]
+
+\item Find the LU factorizations of the following matrix. Check your answe by multiplication: $A = LU$.
+$$A = \begin{bmatrix}
+2 & 1 & 2 \\
+4 & 3 & 7 \\
+6 & 7 & 22 
+\end{bmatrix}$$
+
+\color{TangGreen}
+Using Gaussian elimination, the upper matrix could be formed in the following process
+\begin{gather*}
+\begin{bmatrix}
+2 & 1 & 2 \\
+4 & 3 & 3 \\
+6 & 7 & 22
+\end{bmatrix} \rightarrow \text{subtract } 2 \times \text{row 1 from row 2} \rightarrow \begin{bmatrix}
+2 & 1 & 2 \\
+0 & 1 & 3 \\
+6  & 7 & 22 
+\end{bmatrix} \rightarrow \text{subtract }3 \times \text{row 1 from row 2} \rightarrow \begin{bmatrix}
+2 & 1 & 2 \\
+0 & 1 & 3 \\
+0 & 4 & 16 
+\end{bmatrix} \\
+\rightarrow \text{subtract row 2 from row 3} \rightarrow \begin{bmatrix}
+2 & 1 & 2 \\
+0 & 1 & 3 \\
+0 & 0 & 4
+\end{bmatrix}
+\end{gather*}
+From these operations, the lower triangluar matrix could be formed as 
+$$L = \begin{bmatrix}
+1 & 0 & 0 \\
+2 & 1 & 0 \\
+3 & 4 & 1 
+\end{bmatrix}$$
+Verifying for it
+$$A = LU = \begin{bmatrix}
+1 & 0 & 0 \\
+2 & 1 & 0 \\
+3 & 4  & 1 
+\end{bmatrix}\begin{bmatrix}
+2 & 1 & 2 \\
+0 & 1 & 3 \\
+0 & 0 & 4 
+\end{bmatrix} = \begin{bmatrix}
+2 & 1 & 2 \\
+4 & 3 & 7 \\
+6 & 7 & 22 
+\end{bmatrix}$$
+\color{black}
+
+\item Solve the following system by first finding the LU factorization and then solving by forward elimination and back-substitution. Show the intermediate steps. 
+$$Ax = b\ \ \ :\ \ \ \begin{bmatrix}
+4 & 2 & 0 \\
+4 & 4 & 2 \\
+2 & 2 & 3 
+\end{bmatrix}\begin{bmatrix}
+x_{1} \\
+x_{2} \\
+x_{3} 
+\end{bmatrix} = \begin{bmatrix}
+32 \\
+-8 \\
+11 
+\end{bmatrix}$$
+
+\end{enumerate}
+
+
+\end{document}
