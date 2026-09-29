@@ -5,10 +5,19 @@
 \usepackage{enumerate}
 \usepackage[margin=0.5in]{geometry}
 \usepackage{listings}
+\usepackage{siunitx}
 \usepackage{xcolor}
 
 \definecolor{TangGreen}{HTML}{377459}
 \hyphenpenalty=10000
+\lstset{
+	basicstyle=\footnotesize\ttfamily,
+	columns=flexible,
+	breaklines=true,
+	commentstyle=\color{TangGreen},
+	keywordstyle=\color{black}\bfseries,
+	keepspaces=true
+}
 
 \title{Problem Set 3}
 \author{Jeremy Chen}
@@ -26,13 +35,53 @@
 
 \item $f(x) = 5x - 3$
 
+\color{TangGreen}
+\begin{gather*}
+\text{FE} = |x_{e} - x_{a}| = |0.6 - 0.61| = 0.01 \\
+\text{BE} = |f(x_{a})| = |5 * 0.61 - 3| = 0.05 \\
+\text{EMF} = \frac{\text{FE}}{\text{BE}} = \frac{0.01}{0.05} = 0.2
+\end{gather*}
+\color{black}
+
 \item $f(x) = (5x - 3)^{2}$
+
+\color{TangGreen}
+\begin{gather*}
+\text{FE} = |x_{e} - x_{a}| = |0.6 - 0.61| = 0.01 \\
+\text{BE} = |f(x_{a})| = |(5 * 0.61 - 3)^{2}| = 0.0025 \\
+\text{EMF} = \frac{\text{FE}}{\text{BE}} = \frac{0.01}{0.0025} = 4
+\end{gather*}
+\color{black}
 
 \item $f(x) = (5x - 3)^{3}$
 
+\color{TangGreen}
+\begin{gather*}
+\text{FE} = |x_{e} - x_{a}| = |0.6 - 0.61| = 0.01 \\
+\text{BE} = |f(x_{a})| = |(5 * 0.61 - 3)^{3}| = 0.000125 \\
+\text{EMF} = \frac{\text{FE}}{\text{BE}} = \frac{0.01}{0.000125} = 80
+\end{gather*}
+\color{black}
+
 \item $f(x) = (5x - 3)^{7}$
 
+\color{TangGreen}
+\begin{gather*}
+\text{FE} = |x_{e} - x_{a}| = |0.6 - 0.61| = 0.01 \\
+\text{BE} = |f(x_{a})| = |(5 * 0.61 - 3)^{7}| = \num{7.8125e-10} \\
+\text{EMF} = \frac{\text{FE}}{\text{BE}} = \frac{0.01}{\num{7.8125e-10}} = \num{1.28e7}
+\end{gather*}
+\color{black}
+
 \item $f(x) = (5x - 3)^{1/3}$
+
+\color{TangGreen}
+\begin{gather*}
+\text{FE} = |x_{e} - x_{a}| = |0.6 - 0.61| = 0.01 \\
+\text{BE} = |f(x_{a})| = |(0.5 * 0.61 - 3)^{1/3}| = 0.368 \\
+\text{EMF} = \frac{\text{FE}}{\text{BE}} = \frac{0.01}{0.368} = 0.0272
+\end{gather*}
+\color{black}
 
 \end{enumerate}
 
@@ -46,15 +95,29 @@
 
 What are the forward and backward errors in each case? Is this a \textit{well-conditioned} or \textit{ill-conditioned} problem (explain, briefly)?
 
+\color{TangGreen}
+
+\color{black}
+
 \end{enumerate}
 
 \noindent\textbf{2.} (10 pts) Newton's method. 
 
 \begin{enumerate}[\textbf{(\alph{enumi})}]
 
-\item Show analytically hat Newton’s method converges in one step for any initial guess when finding the root of a linear function $f(x) = a + bx$ when $b \neq 0$. 
+\item Show analytically that Newton’s method converges in one step for any initial guess when finding the root of a linear function $f(x) = a + bx$ when $b \neq 0$. 
 
-\item Derive the formula for using Newton’s method to find the cube root of a real number a (by finding a root $x^{3} = a$). Simplify the resulting expression. Using a calculator, determine the first 4 Newton iterates, $x_{k}$, $k = 1, 2, 3, 4$, when computing $8^{1/3}$ from a starting guess of $x_{0} = 1$. 
+\color{TangGreen}
+For Newton's method, any arbitrary initial guess would be denoted as $x_{0}$. Then, the next step $x_{1} = x_{0} - \frac{f(x_{0})}{f'(x_{0})}$. Given that $f(x) = a + bx$ where $b \neq 0$, $x_{1}$ would have the following form
+$$x_{1} = x_{0} - \frac{a + b*x_{0}}{b} = b*x_{0} - a + b * x_{0} = a$$
+After one step, the root has already been found, which is $a$. 
+\color{black}
+
+\item Derive the formula for using Newton’s method to find the cube root of a real number $a$ (by finding a root $x^{3} = a$). Simplify the resulting expression. Using a calculator, determine the first 4 Newton iterates, $x_{k}$, $k = 1, 2, 3, 4$, when computing $8^{1/3}$ from a starting guess of $x_{0} = 1$. 
+
+\color{TangGreen}
+
+\color{black}
 
 \item Derive the formula for using Newton’s method to find the p’th root of a real number a for some real number $p$. Simplify the resulting expression.
 
@@ -122,7 +185,36 @@ end;
 
 \end{itemize}
 
+\color{TangGreen}
+\lstinputlisting[language=Matlab, numbers=left, stepnumber=1, firstline=1,caption={bisect2.m, Modified bisection function},label=code:bisection modified,frame=single]{solveEquationByNewton.m}
+\color{black}
+
 \item Test your Newton solver by finding $\sqrt{17}$ by looking for a root to $f(x) = x^{2} - 17 = 0$ using an initial guess $x_{0} = 1$. (Use {\tt tol} = $10^{-12}$ and {\tt maxIterations} = 20). Hint: Make sure that you see quadratic convergence (approximately). 
+
+\color{TangGreen}
+\begin{lstlisting}
+>> solveEquationByNewton(f, fx, x0, tol, maxIterations)
+Newton: it= 2: x= 1.000000e+00 f(x)= 9.00e+00 ratio=-1.60e+01
+Newton: it=64: x=-4.000000e+00 f(x)=Newton: it= 3: x= 1.000000e+00 f(x)= 9.00e+00 ratio= 5.44e+00 p=-16.00
+Newton: it=64: x= 1.264198e+01 f(x)= 1.98e-01 ratio=-1.17e+00 p=Newton: it= 4: x= 1.000000e+00 f(x)= 9.00e+00 ratio= 5.44e+00 p=4.28
+Newton: it=-16: x= 6.400000e+01 f(x)= 1.26e+01 ratio= 1.35e+00 p=0.11
+Newton: it=1.380182e+00: x=Newton: it= 5: x= 1.000000e+00 f(x)= 9.00e+00 ratio= 5.44e+00 p=4.28
+Newton: it=4.126107e+00: x=-1.600000e+01 f(x)= 6.40e+01 ratio= 1.26e+01 p=1.35
+Newton: it=2.475590e-02: x= 1.836606e-02 f(x)= 1.79e+00 ratio=Newton: it= 6: x= 1.000000e+00 f(x)= 9.00e+00 ratio= 5.44e+00 p=4.28
+Newton: it=4.126107e+00: x= 4.123107e+00 f(x)=-1.60e+01 ratio= 6.40e+01 p=12.64
+Newton: it=1.347916e+00: x= 2.475590e-02 f(x)= 9.00e-06 ratio= 3.64e-04 p=1.98
+Newton: it= 7: x= 1.000000e+00 f(x)= 9.00e+00 ratio= 5.44e+00 p=4.28
+Newton: it=4.126107e+00: x= 4.123107e+00 f(x)= 4.12e+00 ratio=-1.60e+01 p=64.00
+Newton: it=1.264198e+01: x= 1.347916e+00 f(x)= 2.48e-02 ratio= 9.00e-06 p=0.00
+Newton: it=1.326425e-07: x= 1.999533e+00 f(x)=Newton: it= 8: x= 1.000000e+00 f(x)= 9.00e+00 ratio= 5.44e+00 p=4.28
+Newton: it=4.126107e+00: x= 4.123107e+00 f(x)= 4.12e+00 ratio= 4.12e+00 p=-16.00
+Newton: it=64: x= 1.264198e+01 f(x)= 1.35e+00 ratio= 2.48e-02 p=0.00
+Newton: it=1.193712e-12: x= 0.000000e+00 f(x)= 0.00e+00 ratio=      Inf p=
+ans =
+
+    1.0000    9.0000    5.4444    4.2834    4.1261    4.1231    4.1231    4.1231
+\end{lstlisting}
+\color{black}
 
 \item Use your Newton solver to find 3 real roots of the Bessel function $J_{2}(x)$ on the interval [-2, 10],
 $$f(x) = J_{2}(x).$$

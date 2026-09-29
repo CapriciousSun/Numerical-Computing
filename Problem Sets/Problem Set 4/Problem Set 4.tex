@@ -28,7 +28,7 @@ $$A = \begin{bmatrix}
 \end{bmatrix}$$
 
 \color{TangGreen}
-Using Gaussian elimination, the upper matrix could be formed in the following process
+The upper matrix could be formed in the following process
 \begin{gather*}
 \begin{bmatrix}
 2 & 1 & 2 \\
@@ -47,7 +47,7 @@ Using Gaussian elimination, the upper matrix could be formed in the following pr
 2 & 1 & 2 \\
 0 & 1 & 3 \\
 0 & 0 & 4
-\end{bmatrix}
+\end{bmatrix} = U
 \end{gather*}
 From these operations, the lower triangluar matrix could be formed as 
 $$L = \begin{bmatrix}
@@ -86,7 +86,132 @@ x_{3}
 11 
 \end{bmatrix}$$
 
+\color{TangGreen}
+$Ax$ could be reformatted as the augmented matrix
+$$\left[ \begin{array}{c c c | c}
+4 & 2 & 0 & 32 \\
+4 & 4 & 2 & -8 \\
+2 & 2 & 3 & 11 
+\end{array} \right]$$
+Then, it could be rearranged to 
+$$\left[ \begin{array}{c c c | c}
+2 & 2 & 3 & 11 \\
+4 & 2 & 0 & 32 \\
+4 & 4 & 2 & -8 
+\end{array} \right]$$
+Then, the following upper matrix could be formed
+\begin{gather*}
+\left[ \begin{array}{c c c | c}
+2 & 2 & 3 & 11 \\
+4 & 2 & 0 & 32 \\
+4 & 4 & 2 & -8
+\end{array} \right] \rightarrow \text{subtract 2} \times \text{row 1 from row 2} \rightarrow \left[ \begin{array}{c c c | c}
+2 & 2 & 3 & 11 \\
+0 & -2 & -6 & 10 \\
+4 & 4 & 2 & -8 
+\end{array} \right] \\
+\rightarrow \text{subtract 2 } \times \text{row 1 from row 3} \rightarrow \left[ \begin{array}{c c c | c}
+2 & 2 & 3 & 11 \\
+0 & -2 & -6 & 10 \\
+0 & 0 & -4 & -30
+\end{array} \right] = U
+\end{gather*}
+Then, the lower matrix could be formed as well
+$$L = \begin{bmatrix}
+1 & 0 & 0 \\
+2 & 1 & 0 \\
+2 & 0 & 1 	
+\end{bmatrix}$$
+Verifying that $A = LU$
+$$\begin{bmatrix}
+1 & 0 & 0 \\
+2 & 1 & 0 \\
+2 & 0 & 1 
+\end{bmatrix}\begin{bmatrix}
+2 & 2 & 3 \\
+0 & -2 & -6 \\
+0 & 0 & -4 
+\end{bmatrix} = \begin{bmatrix}
+2 & 2 & 3 \\
+4 & 2 & 0 \\
+4 & 4 & 2 
+\end{bmatrix}$$
+Solving for the system, $-4x_{3} = -30$, so $x_{3} = \frac{15}{2}$. Then, $-2x_{2} - 6x_{3} = 10$, or $-2x_{2} - 45 = 10$, so $x_{2} = -\frac{55}{2}$. Finally, $2x_{1} + 2x_{2} + 3x_{3} = 11$, or $2x_{1} - 55 + \frac{45}{2} = 11$, so $x_{1} = \frac{87}{4}$. 	
+\color{black}
+
 \end{enumerate}
 
+\noindent\textbf{2. }(20 pts) (Hand computations)
+
+\begin{enumerate}[\textbf{(\alph{enumi})}]
+
+\item Show that the max-norm, $||x||_{\infty}$, of an n-dimensional vector $x \in \mathbb{R}^{n}$, satisfies the three properties of a vector norm.
+
+\color{TangGreen}
+The max-norm $||x||_{\infty}$ of an n-dimensional vector $\begin{bmatrix}
+x_{1} \\
+x_{2} \\
+\vdots \\
+x_{n}
+\end{bmatrix}$ is calculated as $\left( \sum_{i}^{n} |x_{i}|^{\infty} \right)^{1/\infty}$. For the triangle inequality, the max-norm will always produce the greatest number in the vector, which would be less than the sum of all numbers in the vector. Even if all other numbers aside from the greatest number are 0, $||x||_{\infty} \leq ||x_{1}||_{\infty} + ||x_{2}||_{\infty} + \dots + ||x_{n}||_{\infty}$ will still be true. For absolute homogeneity, $||cx||_{\infty} = $
+\color{black}
+
+\item Find the max norm, $||A||_{\infty}$, of the following matrices. Also find a vector $x$, with $||x||_{\infty} = 1$ such that $||Ax||_{\infty} = ||A||_{\infty}$. 
+$$(i)\ \ \ A = \begin{bmatrix}
+-5 & 2 & -1 \\
+-2 & 4 & 3 \\
+-4 & 1 & -1 
+\end{bmatrix},\ \ \ (ii)\ \ \ A = \begin{bmatrix}
+5 & 1 & 2 & -3 \\
+4 & -3 & -1 & 0 \\
+3 & 1 & -5 & 2 \\
+-4 & -7 & 0 & 2 
+\end{bmatrix}$$ 
+
+\color{TangGreen}
+For (i), the max norm $||A||_{\infty} = -5$ and for (ii), the max norm $||A||_{\infty} = -7$. For (i), a vector $x$ that has $||x||_{\infty} = 1$ and $||Ax||_{\infty} = ||A||_{\infty}$ is the vector $\begin{bmatrix}
+1 \\
+0 \\
+0 
+\end{bmatrix}$ given that $Ax = \begin{bmatrix}
+-5 \\
+-2 \\
+-4 
+\end{bmatrix}$, which has max norm of -5. For, (ii), that vector is $\begin{bmatrix}
+0 \\
+1 \\
+0 \\
+0 
+\end{bmatrix}$ since $Ax = \begin{bmatrix}
+1 \\
+-3 \\
+1 \\
+-7 
+\end{bmatrix}$. 
+\color{black}
+
+\item Find the max-norm condition number, $\kappa_{\infty}(A)$, of the following matrices.
+$$(i)\ \ \ A = \begin{bmatrix}
+1 & 2 \\
+3 & 4 
+\end{bmatrix},\ \ \ (ii)\ \ \ A = \begin{bmatrix}
+1 & 2.01 \\
+2 & 4 
+\end{bmatrix}$$
+
+\color{TangGreen}
+To calculate the max-norm condition numbers, the inverse of each matrix is needed. For (i), $A^{-1} = \frac{1}{4 - 6}\begin{bmatrix}
+4 & -2 \\
+-3 & 1 
+\end{bmatrix} = -\frac{1}{2}\begin{bmatrix}
+4 & -2 \\
+-3 & 1 
+\end{bmatrix}$. So the condition number is $\text{cond}(A) = ||A||_{\infty} * ||A^{-1}||_{\infty} = 4 * -2 = -8$. For (ii), $A^{-1} = \frac{1}{4 - 4.02}\begin{bmatrix}
+4 & -2.01 \\
+-2 & 1 
+\end{bmatrix}$, so the condition number is $\text{cond}(A) = ||A||_{\infty} * ||A||_{\infty} = 4 * -0.08 = -0.32$. 
+\color{black}
+
+\end{enumerate}
 
 \end{document}
