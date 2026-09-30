@@ -212,6 +212,84 @@ To calculate the max-norm condition numbers, the inverse of each matrix is neede
 \end{bmatrix}$, so the condition number is $\text{cond}(A) = ||A||_{\infty} * ||A||_{\infty} = 4 * -0.08 = -0.32$. 
 \color{black}
 
+\item Let $A$ be an $n \times n$ non-singular matrix and $a \neq 0$ a real number.
+
+\begin{enumerate}[(\roman{enumii})]
+
+\item What is the norm of a matrix $\alpha A$ in terms of the norm of $A$?
+
+\color{TangGreen}
+The norm of a matrix $\alpha A$ should be $\alpha$ times the norm of $A$. 
+\color{black}
+
+\item What is the inverse of the matrix $\alpha A$?
+
+\color{TangGreen}
+Given that the inverse of a matrix $A$ is $A^{-1}$, the inverse of $\alpha A$ should then be $\frac{1}{\alpha} A^{-1}$. 
+\color{black}
+
+\item What is the condition number of $\alpha A$ in terms of the condition number of $A$?
+
+\color{TangGreen}
+The condition number of $\alpha A$ would require the norm of the inverse of $\alpha A$. This would be $\frac{1}{\alpha}$ times the norm of $A^{-1}$. This means the condition number of $\alpha A$ would be the same as the norm of $A$, given that $\alpha ||A|| * \frac{1}{\alpha} ||A^{-1}||$ would just result in $||A|| * ||A^{-1}||$. 
+\color{black}
+
+\end{enumerate}
+
+\item Find the relative forward error, relative backward error, and error magnification factor, in the max-norm, for the following problem
+$$Ax = b\ \ :\ \ \begin{bmatrix}
+1 & 2 \\
+2 & 4.01 
+\end{bmatrix}\begin{bmatrix}
+x_{1} \\
+x_{2} 
+\end{bmatrix} = \begin{vmatrix}
+3 \\
+6.01 
+\end{vmatrix},$$
+with approximate solution $x_{a}$ given by 
+$$(i)\ x_{a} = \begin{bmatrix}
+-10 \\
+6 
+\end{bmatrix},\ \ \ (ii)\ x_{a} = \begin{bmatrix}
+-100 \\
+52 
+\end{bmatrix},\ \ \ (iii)\ x_{a} = \begin{bmatrix}
+-600 \\
+301 
+\end{bmatrix},\ \ \ (iv)\ x_{a} = \begin{bmatrix}
+-599 \\
+301
+\end{bmatrix}$$
+What is the max-norm condition number, $\kappa_{\infty}(A)$, of the matrix? Is $\kappa_{\infty}(A)$ a good approximation to the worst case EMF in these cases? 
+
+\color{TangGreen}
+To start, the matrix inverse $A^{-1}$ of $A$ is $\frac{1}{4.01 - 4}\begin{bmatrix}
+4.01 & -2 \\
+-2 & 1 
+\end{bmatrix}$. So the max-norm condition number $\kappa_{\infty}(A) = ||A||_{\infty} * ||A^{-1}||_{\infty} = 4.01 * 0.0401 = 0.1608$. 
+
+Relative forward error is calculated by $\frac{||x - x_{a}||_{\infty}}{||x||_{\infty}}$, relative backward error is calculated by $\frac{||b - Ax_{a}||_{\infty}}{||b||_{\infty}}$, and EMF is calculated by dividing relative forward error by relative backward error. The solution to this system $x = \begin{bmatrix}
+1 \\
+1
+\end{bmatrix}$. For (i), the relative forward error is $\frac{\left|\left| \begin{bmatrix}
+1 \\
+1 
+\end{bmatrix} - \begin{bmatrix}
+-10 \\
+6 
+\end{bmatrix} \right|\right|_{\infty}}{1} = 11$, the relative backward error is $\frac{\left|\left| \begin{bmatrix}
+3 \\
+6.01 
+\end{bmatrix} - \begin{bmatrix}
+1 & 2 \\
+2 & 4.01 
+\end{bmatrix}\begin{bmatrix}
+-10 \\
+6 
+\end{bmatrix} \right|\right|}{6.01}$, and the EMF is $\frac{11}{den}$
+\color{black}
+
 \end{enumerate}
 
 \end{document}
