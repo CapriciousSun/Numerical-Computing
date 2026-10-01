@@ -1,7 +1,8 @@
 function [L, U] = luFactorNoPivoting(A)
 n = height(A);
-disp(A);
 U = zeros(n, n);
+% Go row by row and factor out the forward most value until a clean
+% diagonal is formed. 
 for i = 1:n
   U(i, i) = 1;
   for j = i+1:n
@@ -10,5 +11,4 @@ for i = 1:n
     U(j, i) = mult;
   end
 end
-disp(U)
 L = A;

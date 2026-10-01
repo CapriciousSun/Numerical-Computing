@@ -9,6 +9,14 @@
 
 \definecolor{TangGreen}{HTML}{377459}
 \hyphenpenalty=10000
+\lstset{
+	basicstyle=\footnotesize\ttfamily,
+	columns=flexible,
+	breaklines=true,
+	commentstyle=\color{TangGreen},
+	keywordstyle=\color{black}\bfseries,
+	keepspaces=true
+}
 
 \title{Problem Set 4}
 \author{Jeremy Chen}
@@ -292,4 +300,95 @@ Relative forward error is calculated by $\frac{||x - x_{a}||_{\infty}}{||x||_{\i
 
 \end{enumerate}
 
+\noindent\textbf{3. }(20 pts) Write a Matlab code
+$$\text{{\tt[L,U] = luFactorNoPivoting(A)}}$$
+that takes an $n \times n$ matrix $A$ and computes the LU factorization, $A = LU$ (no pivoting). Write a second Matlab code
+$$\text{{\tt x = luSolveNoPivoting(b,L,U)}}$$
+that solves the system $Ax = b$, for $x$, given $b$, using the output from {\tt luFactorNoPivoting}. For this exercise you should \textbf{use only elementary arithmetic operations (+, -, *, /) and row operations }(e.g. no backslash operators to solve the triangular systems). 
+
+\begin{enumerate}[(a)]
+
+\item Test your {\tt luFactorNoPivoting} routine using the matrix
+$$A = \begin{bmatrix}
+2 & 1 & 1 & 0 \\
+4 & 3 & 3 & 1 \\
+8 & 7 & 9 & 5 \\
+6 & 7 & 9 & 8 
+\end{bmatrix}$$
+Output $A$, $L$, and $U$. Check that $A = LU$.
+
+\color{TangGreen}
+\lstinputlisting[language=Matlab, numbers=left, stepnumber=1, firstline=1,caption={luFactorNoPivoting.m, LU Factoring without Pivoting},label=code:no pivot factor,frame=single]{luFactorNoPivoting.m}
+The above code is used to generate the upper and lower triangular matrices. As one can see, it does not make use of pivoting, so there's an implicit assumption that every subsequent entry would have a greater value than the entry above it. Testing the function gets the following output
+\begin{lstlisting}
+>> [L, U] = luFactorNoPivoting(A)
+
+L =
+
+	2     1     1     0
+	0     1     1     1
+	0     0     2     2
+	0     0     0     2
+
+
+U =
+
+	1     0     0     0
+	2     1     0     0
+	4     3     1     0
+	3     4     1     1
+\end{lstlisting}
+\color{black}
+
+\item Test your function {\tt luSolveNoPivoting} by solving $Ax = b$ where $A$ is from part (a) and $b = [7, 23, 69, 79]^{T}$. Output $x$ and check that $Ax = b$. 
+
+\color{TangGreen}
+\lstinputlisting[language=Matlab, numbers=left, stepnumber=1, firstline=1,caption={luSolveNoPivoting.m, LU Solving without Pivoting},label=code:no pivot solve,frame=single]{luSolveNoPivoting.m}
+The above code solves for $Ax = b$ given $L$ and $U$ from the previous part. $b$ is defined as a one-dimensional array given that's easier to call on every element when it's formatted like that. 
+\begin{lstlisting}
+>> b = [7 23 69 79]
+
+b =
+
+	7    23    69    79
+>> x = luSolveNoPivoting(b, L, U)
+
+x =
+
+	1     2     3     4
+\end{lstlisting}
+The output here is correct and can be verified by multiplying $Ax$, and the output would be $b$. 
+\begin{lstlisting}
+>> A*transpose(x)
+
+ans =
+
+	7
+	23
+	69
+	79
+\end{lstlisting}
+\color{black}
+
+\end{enumerate}
+
+\noindent\textbf{4. }(10 pts) Write a Matlab code to form the $n \times n$ matrix $A = [a_{ij}]$ with entries
+$$a_{ij} = |i - j| + 1$$
+Let $x = [1, 1, 1, \dots, 1]^{T}$ denote the exact solution and let $b = Ax$ be the right-hand side. For $n = 10, 100, 1000$: 
+
+\begin{enumerate}[(a)]
+
+\item Determine the numerical solution, $x_{a}$, to $Ax = b$ using the Matlab backslash command and compute the max-norm relative forward error, relative backward error and error magnification factor. (No need to print $x_{a}$). Also compute the max-norm condition number of $A$. Print the results using
+
+{\tt fprintf(’ n=\%5d : RFE=\%8.2e RBE=\%8.2e EMF=\%8.2e kappa(A)=\%8.2e\textbackslash n’,n,RFE,RBE,EMF,kappa);}
+
+\item Does the Matlab backslash command appear to be using a stable algorithm in this case? (explain briefly).
+
+\item How does $\kappa_{\infty}(A)$ depend on the size of the matrix $n$?
+
+\item Is $\kappa_{\infty}(A)$ a reasonable estimate of the EMF in this case?
+
+\item How can you use $\kappa_{\infty}(A)$ to approximately estimate the number of correct significant digits in the computed solution?
+
+\end{enumerate}
 \end{document}
