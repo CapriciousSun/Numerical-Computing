@@ -1,0 +1,139 @@
+/* QCC Theme - Dark Mode Only For Now */
+
+.theme-dark {
+  --text-accent: #da1e28;
+}
+
+.inline-title {
+  background-color: #da1e28;
+  color: black;
+}
+
+.cm-strong,
+.markdown-preview-section strong {
+  color: #da1e28;
+  font-style: normal !important;
+  font-weight: bold !important;
+}
+
+.cm-em,
+.markdown-preview-section em {
+  color: #da1e28;
+  font-style: italic !important;
+}
+
+/* Header colors */
+.cm-header-1,
+h1 {
+  background-color: #da1e28;
+  color: black;
+}
+
+.cm-header-2,
+h2 {
+  background-color: #da1e28;
+  color: black;
+  width: fit-content;
+}
+
+.cm-header-3,
+h3 {
+  background-color: #da1e28;
+  color: black;
+  width: fit-content;
+}
+
+.cm-header-4,
+h4 {
+  background-color: #da1e28;
+  color: black;
+  width: fit-content;
+}
+
+.markdown-rendered
+.callout-content
+h4 {
+  background-color: transparent;
+}
+
+hr {
+  background: linear-gradient(to left, #da1e28 90%);
+  height: 2px;
+  border: 0;
+}
+
+.workspace-leaf-resize-handle {
+  background: none;
+}
+
+.published-container
+.markdown-rendered
+h1 {
+  width: fit-content;
+  color: black;
+}
+
+.published-container
+.markdown-rendered
+h2 {
+  width: fit-content;
+  color: black;
+}
+
+.published-container
+.markdown-rendered
+h4 {
+  width: fit-content;
+  color: black;
+}
+
+/* This was repeated from earlier with the inline title styling,
+   but it has to be repeated because of Obsidian publish 
+   rendering madness */
+.published-container
+.markdown-rendered
+h1.page-header {
+  background-color: #da1e28;
+  color: black;
+  width: 100%;
+}
+
+.markdown-preview-section p {
+  color: white;
+}
+
+.publish-article-heading .clickable-icon {
+    display: None;
+}
+
+.markdown-rendered
+hr {
+  background: linear-gradient(to right, #a56eff, #007d79);
+  height: 2px;
+  border: 0;
+}
+
+.callout[data-callout="formula"] {
+  --callout-color: 36, 161, 72;
+}
+
+.callout[data-callout="info"] {
+  --callout-color: 0, 114, 195;
+}
+
+.published-container
+.callout-content
+h4 {
+  background-color: transparent;
+  color: white;
+}
+
+.callout-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* .cm-callout .markdown-rendered h4 {
+  display: flex;
+  align-self: center;
+} */

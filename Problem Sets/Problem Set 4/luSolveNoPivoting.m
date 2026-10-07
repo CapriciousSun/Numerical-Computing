@@ -1,3 +1,8 @@
+% b (input) : the desired vector after multiplication
+% L (input) : lower triangular matrix
+% U (input) : upper triangular matrix
+% x (output) : the solution vector
+
 function x = luSolveNoPivoting(b, L, U)
 n = height(L);
 

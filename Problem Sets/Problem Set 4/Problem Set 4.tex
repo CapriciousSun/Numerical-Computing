@@ -144,7 +144,12 @@ $$\begin{bmatrix}
 4 & 2 & 0 \\
 4 & 4 & 2 
 \end{bmatrix}$$
-Solving for the system, $-4x_{3} = -30$, so $x_{3} = \frac{15}{2}$. Then, $-2x_{2} - 6x_{3} = 10$, or $-2x_{2} - 45 = 10$, so $x_{2} = -\frac{55}{2}$. Finally, $2x_{1} + 2x_{2} + 3x_{3} = 11$, or $2x_{1} - 55 + \frac{45}{2} = 11$, so $x_{1} = \frac{87}{4}$. 	
+Solving for the system, $-4x_{3} = -30$, so $x_{3} = \frac{15}{2}$. Then, $-2x_{2} - 6x_{3} = 10$, or $-2x_{2} - 45 = 10$, so $x_{2} = -\frac{55}{2}$. Finally, $2x_{1} + 2x_{2} + 3x_{3} = 11$, or $2x_{1} - 55 + \frac{45}{2} = 11$, so $x_{1} = \frac{87}{4}$. The solution vector is then
+$$x = \begin{bmatrix}
+\frac{87}{4} \\
+-\frac{55}{2} \\
+\frac{15}{2}
+\end{bmatrix}$$
 \color{black}
 
 \end{enumerate}
@@ -275,12 +280,17 @@ What is the max-norm condition number, $\kappa_{\infty}(A)$, of the matrix? Is $
 To start, the matrix inverse $A^{-1}$ of $A$ is $\frac{1}{4.01 - 4}\begin{bmatrix}
 4.01 & -2 \\
 -2 & 1 
-\end{bmatrix}$. So the max-norm condition number $\kappa_{\infty}(A) = ||A||_{\infty} * ||A^{-1}||_{\infty} = 4.01 * 0.0401 = 0.1608$. 
+\end{bmatrix} = \begin{bmatrix}
+401 & -200 \\
+-200 & 100
+\end{bmatrix}$. So the max-norm condition number $\kappa_{\infty}(A) = ||A||_{\infty} * ||A^{-1}||_{\infty} = 6.01 * 601 = 3612.01$. 
 
 Relative forward error is calculated by $\frac{||x - x_{a}||_{\infty}}{||x||_{\infty}}$, relative backward error is calculated by $\frac{||b - Ax_{a}||_{\infty}}{||b||_{\infty}}$, and EMF is calculated by dividing relative forward error by relative backward error. The solution to this system $x = \begin{bmatrix}
 1 \\
 1
-\end{bmatrix}$. For (i), the relative forward error is $\frac{\left|\left| \begin{bmatrix}
+\end{bmatrix}$.
+
+For (i), the relative forward error is $\frac{\left|\left| \begin{bmatrix}
 1 \\
 1 
 \end{bmatrix} - \begin{bmatrix}
@@ -295,7 +305,60 @@ Relative forward error is calculated by $\frac{||x - x_{a}||_{\infty}}{||x||_{\i
 \end{bmatrix}\begin{bmatrix}
 -10 \\
 6 
-\end{bmatrix} \right|\right|}{6.01}$, and the EMF is $\frac{11}{den}$
+\end{bmatrix} \right|\right|}{6.01} = 0.3245$, and the EMF is $\frac{11}{0.3245} = 33.902$. 
+
+For (ii), the relative forward error is $\left|\left| \begin{bmatrix}
+1 \\
+1
+\end{bmatrix} - \begin{bmatrix}
+-100 \\
+52 
+\end{bmatrix} \right|\right|_{\infty} = 101$, the relative backward error is $\frac{\left|\left| \begin{bmatrix}
+3 \\
+6.01 
+\end{bmatrix} - \begin{bmatrix}
+1 & 2 \\
+2 & 4.01 
+\end{bmatrix}\begin{bmatrix}
+-100 \\
+52 
+\end{bmatrix} \right|\right|}{||b||_{\infty}} = \frac{2.51}{6.01} = 0.4176$, and the EMF is $\frac{101}{0.4176} = 241.84$. 
+
+For (iii), the relative forward error is $\left|\left| \begin{bmatrix}
+1 \\
+1 
+\end{bmatrix} - \begin{bmatrix}
+-600 \\
+301 
+\end{bmatrix} \right|\right|_{\infty} = 601$, the relative backward error is $\frac{\left|\left| \begin{bmatrix}
+3 \\
+6.01 
+\end{bmatrix}\begin{bmatrix}
+1 & 2 \\
+2 & 4.01 
+\end{bmatrix}\begin{bmatrix}
+-600 \\
+301 
+\end{bmatrix} \right|\right|_{\infty}}{6.01} = 1/6.01 = 0.1664$, and EMF is $\frac{601}{0.1664} = 3612.01$.
+
+For (iv), the relative forward error is $\left|\left| \begin{bmatrix}
+1 \\
+1 
+\end{bmatrix} - \begin{bmatrix}
+-599 \\
+300 
+\end{bmatrix} \right|\right|_{\infty} = 600$, the relative backward error is $\frac{\left|\left| \begin{bmatrix}
+3 \\
+6.01 
+\end{bmatrix} - \begin{bmatrix}
+1 & 2 \\
+2 & 4.01 
+\end{bmatrix}\begin{bmatrix}
+-599 \\
+301 
+\end{bmatrix} \right|\right|}{6.01} = 0.4992$, and the EMF is $\frac{600}{0.4992} = 1202$. 
+
+Given all these values, $\kappa_{\infty}$ is in fact a good approximation of the worst case EMF, being equal to the worst EMF in case (iii). 
 \color{black}
 
 \end{enumerate}
@@ -382,13 +445,46 @@ Let $x = [1, 1, 1, \dots, 1]^{T}$ denote the exact solution and let $b = Ax$ be 
 
 {\tt fprintf(’ n=\%5d : RFE=\%8.2e RBE=\%8.2e EMF=\%8.2e kappa(A)=\%8.2e\textbackslash n’,n,RFE,RBE,EMF,kappa);}
 
+\color{TangGreen}
+\lstinputlisting[language=Matlab, numbers=left, stepnumber=1, firstline=1,caption={formMatrix.m, Matrix with rule |i - j| + 1},label=code:form matrix,frame=single]{formMatrix.m}
+The above code creates an $n \times n$ matrix with the required rules. Then, solving for $b$ with the ones matrix gets output
+\begin{lstlisting}
+>> formMatrix(10)
+	n=   10 : RFE=4.22e-15 RBE=0.00e+00 EMF=     Inf kappa(A)=4.00e+02
+\end{lstlisting}
+\begin{lstlisting}
+>> formMatrix(100)
+	n=  100 : RFE=5.62e-12 RBE=4.55e-12 EMF=6.24e+03 kappa(A)=3.78e+05
+\end{lstlisting}
+\begin{lstlisting}
+>> formMatrix(1000)
+	n= 1000 : RFE=1.46e-09 RBE=1.69e-09 EMF=4.32e+05 kappa(A)=3.75e+08
+\end{lstlisting}
+\color{black}
+
 \item Does the Matlab backslash command appear to be using a stable algorithm in this case? (explain briefly).
+
+\color{TangGreen}
+It seems to be relatively stable, given that the forward and backward error are both in decimals.  
+\color{black}
 
 \item How does $\kappa_{\infty}(A)$ depend on the size of the matrix $n$?
 
+\color{TangGreen}
+It does, as seen by the slowly increasing values of {\tt kappa(A)}. 
+\color{black}
+
 \item Is $\kappa_{\infty}(A)$ a reasonable estimate of the EMF in this case?
 
+\color{TangGreen}
+No it is not, given that the values of {\tt kappa(A)} are usually a few magnitudes off.
+\color{black}
+
 \item How can you use $\kappa_{\infty}(A)$ to approximately estimate the number of correct significant digits in the computed solution?
+
+\color{TangGreen}
+Assuming that we're operating in double precision, we can assume estimate the number of correct significant digits using the power that {\tt kappa(A)} is raised to. So for $n = 1000$, the approximation is accurate to 16 - 8 = 8 digits. 
+\color{black}
 
 \end{enumerate}
 \end{document}

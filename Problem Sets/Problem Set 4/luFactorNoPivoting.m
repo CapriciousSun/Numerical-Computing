@@ -1,3 +1,7 @@
+% A (input) : a matrix
+% L (output) : lower triangular matrix
+% U (output) : upper triangular matrix
+
 function [L, U] = luFactorNoPivoting(A)
 n = height(A);
 U = zeros(n, n);
