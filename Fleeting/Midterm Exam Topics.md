@@ -20,7 +20,7 @@ Tags:
 		- [x] Quadratic convergence
 		- [ ] Linear v.s. super-linear convergence
 	- [ ] Secant method
-		- [ ] False position
+		- [x] False position
 		- [ ] Inverse quadratic interpolation
 - [ ] Gaussian elimination and systems of linear equations
 	- [ ] LU factorization

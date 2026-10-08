@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Fleeting/Secant Method.md",
+                "file": "Fleeting/Taylor's Theorem.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Secant Method"
+              "title": "Taylor's Theorem"
             }
           },
           {
@@ -42,10 +42,10 @@
               "type": "pdf",
               "state": {
                 "file": "References/Sauer - Numerical Analysis.pdf",
-                "page": 83,
-                "left": 7,
-                "top": 776,
-                "zoom": 1.49
+                "page": 64,
+                "left": -149,
+                "top": 604,
+                "zoom": 1.1
               },
               "icon": "lucide-file-text",
               "title": "Sauer - Numerical Analysis"
@@ -61,8 +61,7 @@
               "title": "Graph view"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -229,16 +228,29 @@
       "pdf-plus:PDF++: Toggle auto-paste": false
     }
   },
-  "active": "11926a35b8ab77b7",
+  "active": "96913766c8c93514",
   "lastOpenFiles": [
-    "Fleeting/Secant Method.md",
-    "References/Sauer - Numerical Analysis.pdf",
-    "Fleeting/Newton's Method.md",
+    "Fleeting/Gaussian Elimination.md",
+    "Fleeting/Taylor's Theorem.md",
+    "Problem Sets/Problem Set 3/Solution Set 3.pdf",
+    "Problem Sets/Problem Set 2/Solution Set 2.pdf",
+    "Problem Sets/Problem Set 1/Solution Set 1.pdf",
+    "Problem Sets/Problem Set 4/Solution Set 4.pdf",
+    "Problem Sets/Problem Set 4/ss4.pdf",
+    "Problem Sets/Problem Set 3/ss3.pdf",
+    "Problem Sets/Problem Set 2/ss2.pdf",
+    "Problem Sets/Problem Set 1/ss1.pdf",
+    "Fleeting/Fixed-Point Iteration.md",
     "Fleeting/Midterm Exam Topics.md",
+    "References/Sauer - Numerical Analysis.pdf",
+    "Fleeting/LU Factorization.md",
+    "Tags/Systems of Equations.md",
+    "Fleeting/Secant Method.md",
+    "Fleeting/Numerical Error.md",
+    "Fleeting/Newton's Method.md",
     "Fleeting/Horner's Method (Nested Multiplication).md",
     "Fleeting/Bisection Method.md",
     "Tags/Root Finding.md",
-    "Fleeting/Fixed-Point Iteration.md",
     "Tags/Equation Solving.md",
     "Fleeting/Floating Point Arithmetics.md",
     "References/Sauer - Numerical Analysis.md",
