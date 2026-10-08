@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Fleeting/Fixed-Point Iteration.md",
+                "file": "Fleeting/Secant Method.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Fixed-Point Iteration"
+              "title": "Secant Method"
             }
           },
           {
@@ -36,6 +36,22 @@
             }
           },
           {
+            "id": "11926a35b8ab77b7",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "References/Sauer - Numerical Analysis.pdf",
+                "page": 83,
+                "left": 7,
+                "top": 776,
+                "zoom": 1.49
+              },
+              "icon": "lucide-file-text",
+              "title": "Sauer - Numerical Analysis"
+            }
+          },
+          {
             "id": "a8fa886ac7f8e72f",
             "type": "leaf",
             "state": {
@@ -45,7 +61,8 @@
               "title": "Graph view"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -212,14 +229,18 @@
       "pdf-plus:PDF++: Toggle auto-paste": false
     }
   },
-  "active": "96913766c8c93514",
+  "active": "11926a35b8ab77b7",
   "lastOpenFiles": [
+    "Fleeting/Secant Method.md",
+    "References/Sauer - Numerical Analysis.pdf",
+    "Fleeting/Newton's Method.md",
+    "Fleeting/Midterm Exam Topics.md",
+    "Fleeting/Horner's Method (Nested Multiplication).md",
     "Fleeting/Bisection Method.md",
+    "Tags/Root Finding.md",
     "Fleeting/Fixed-Point Iteration.md",
     "Tags/Equation Solving.md",
     "Fleeting/Floating Point Arithmetics.md",
-    "Fleeting/Midterm Exam Topics.md",
-    "Fleeting/Horner's Method (Nested Multiplication).md",
     "References/Sauer - Numerical Analysis.md",
     "Templates/Default.md",
     "Templates"

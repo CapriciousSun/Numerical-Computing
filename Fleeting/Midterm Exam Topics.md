@@ -13,11 +13,11 @@ Tags:
 	- [ ] Drawing functions by hand; $e^{x}$, $x^{n}$, $\sin(x)$, $\cos(x)$, $x^{n} - 1$
 	- [x] Bisection method
 	- [ ] Fixed point iteration (FPI) method
-		- [ ] Conditions for convergence
+		- [x] Conditions for convergence
 		- [ ] Forward and backward errors and error magnification factor (EMF)
 	- [ ] Newton's method
-		- [ ] Know the derivation
-		- [ ] Quadratic convergence
+		- [x] Know the derivation
+		- [x] Quadratic convergence
 		- [ ] Linear v.s. super-linear convergence
 	- [ ] Secant method
 		- [ ] False position
